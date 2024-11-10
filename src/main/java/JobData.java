@@ -83,20 +83,47 @@ public class JobData {
         return jobs;
     }
 
-    /**
+    /*
      * Search all columns for the given term
      *
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
+    //Task 2
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-        // load data, if not already loaded
+// load data, if not already loaded
         loadData();
 
         // TODO - implement this method
-        return null;
+        //create a new array called "jobs"
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row: allJobs) {
+            for (String entry: row.values()) {
+                if (entry.toLowerCase().contains(value.toLowerCase())) {
+                    if (!jobs.contains(value)) {
+                        jobs.add(row);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return jobs;
     }
+
+    /*   load the job data
+      create a new array called "jobs"
+      get the number of the columns  from the job data
+      create a for loop that run once for  every column in the jobdata.csv
+         get the column name
+         get the row for the current column
+         create a new string called aValue that's equals the row for the column
+         if aValue contains the search value
+            add the row to the job array
+       return the jobs array
+        */
 
     /**
      * Read in data from a CSV file and store it in a list
